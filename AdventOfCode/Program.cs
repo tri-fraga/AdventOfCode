@@ -14,8 +14,9 @@ namespace AdventOfCode
 
             //Day4.ProcessPassports(true);
 
-            Day5.Board();
+            //Day5.Board();
 
+            Day6.GetAnswerCount();
 
             Console.ReadLine();
         }
