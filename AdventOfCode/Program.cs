@@ -16,7 +16,9 @@ namespace AdventOfCode
 
             //Day5.Board();
 
-            Day6.GetAnswerCount();
+            //Day6.GetAnswerCount();
+
+            Day7.DoBagging();
 
             Console.ReadLine();
         }
