@@ -12,7 +12,7 @@ namespace AdventOfCode
     {
         public static void Board()
         {
-            var passes = LoadBoardingPasses(@"C:\dev\vs\AdventOfCode\AdventOfCode\Day5\input.txt");
+            var passes = Helper.LoadLines(@"C:\dev\vs\AdventOfCode\AdventOfCode\Day5\input.txt");
 
             List<int> passIds = new List<int>();
 
@@ -60,9 +60,5 @@ namespace AdventOfCode
             return ProcessPassPart(pass.Substring(1), max, bas);
         }
 
-        private static string[] LoadBoardingPasses(string path)
-        {
-            return File.ReadAllText(path).Trim().Split('\n');
-        }
     }
 }

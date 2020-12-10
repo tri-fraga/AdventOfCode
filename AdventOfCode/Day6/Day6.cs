@@ -12,7 +12,7 @@ namespace AdventOfCode
     {
         public static void GetAnswerCount()
         {
-            var answers = GetAnswers(@"C:\dev\vs\AdventOfCode\AdventOfCode\Day6\input.txt");
+            var answers = Helper.LoadLines(@"C:\dev\vs\AdventOfCode\AdventOfCode\Day6\input.txt", "\n\n");
 
             GetAnswerCount1(answers);
 
@@ -59,9 +59,5 @@ namespace AdventOfCode
             Console.WriteLine($"The second answer is {sum}");
         }
 
-        private static string[] GetAnswers(string path)
-        {
-            return Regex.Split(File.ReadAllText(path).Trim(), "\n\n");
-        }
     }
 }

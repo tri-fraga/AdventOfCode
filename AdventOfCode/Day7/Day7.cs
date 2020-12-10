@@ -12,7 +12,7 @@ namespace AdventOfCode
     {
         public static void DoBagging()
         {
-            var descriptions = GetDescriptions(@"C:\dev\vs\AdventOfCode\AdventOfCode\Day7\input.txt");
+            var descriptions = Helper.LoadLines(@"C:\dev\vs\AdventOfCode\AdventOfCode\Day7\input.txt");
             var lookingFor = "shiny gold";
             List<Bag> bags = descriptions.Select(description => new Bag(description)).ToList();
 
@@ -22,12 +22,6 @@ namespace AdventOfCode
 
             var containingBags = bags.Find(b => b.Name == lookingFor).CountBags(bags) - 1;
             Console.WriteLine($"{lookingFor} contains {containingBags} bags");
-        }
-
-
-        private static string[] GetDescriptions(string path)
-        {
-            return Regex.Split(File.ReadAllText(path).Trim(), "\n");
         }
     }
 }
