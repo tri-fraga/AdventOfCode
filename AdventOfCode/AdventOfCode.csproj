@@ -56,6 +56,7 @@
     <Compile Include="Helper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Year2020\Day14\Day14.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -63,7 +64,6 @@
   <ItemGroup>
     <Folder Include="Year2020\Day01\" />
     <Folder Include="Year2020\Day02\" />
-    <Folder Include="Year2020\Day14\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

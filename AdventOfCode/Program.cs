@@ -10,12 +10,26 @@ using AdventOfCode.Year2020;
 
 namespace AdventOfCode
 {
-    class Program
+    public static class Program
     {
         private const string DefaultYear = "2020";
-        private const string DefaultDay = "08";
+        private const string DefaultDay = "14";
         private const string BaseDir = @"C:\dev\vs\AdventOfCode\AdventOfCode\";
         private const string DefaultFile = "input.txt";
+
+        private const string Header = @"
+                  ___       _                     _    _____   __  _____             _       
+                 / _ \     | |                   | |  |  _  | / _|/  __ \           | |      
+                / /_\ \  __| |__   __ ___  _ __  | |_ | | | || |_ | /  \/  ___    __| |  ___ 
+                |  _  | / _` |\ \ / // _ \| '_ \ | __|| | | ||  _|| |     / _ \  / _` | / _ \
+                | | | || (_| | \ V /|  __/| | | || |_ \ \_/ /| |  | \__/\| (_) || (_| ||  __/
+                \_| |_/ \__,_|  \_/  \___||_| |_| \__| \___/ |_|   \____/ \___/  \__,_| \___|
+                                                                                             
+                                                                                             
+        ";
+
+        private static readonly string Seperator = new string(Enumerable.Repeat('-', 120).ToArray());
+
 
         /// <summary>
         /// [0] - [year]
@@ -27,6 +41,7 @@ namespace AdventOfCode
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            IDay dayInstance;
             var validationMessage = "";
             var year = "Year";
             var day = "Day";
@@ -34,8 +49,10 @@ namespace AdventOfCode
             var fileName = "";
             var filePath = "";
 
+            Console.ForegroundColor = ConsoleColor.Red;
+
             // Check Arguments
-            if(args.Length == 4)
+            if (args.Length == 4)
             {
                 if (!int.TryParse(args[0], out var intYear)) 
                     validationMessage = "Year must be a valid integer";
@@ -71,10 +88,23 @@ namespace AdventOfCode
                 validationMessage = @"Valid base dir and filename must be given (e.g. C:\dev\vs\AdventOfCode\AdventOfCode\ input.txt)";
 
             // Instantiate Day
-            IDay dayInstance = Activator.CreateInstance(Type.GetType($"AdventOfCode.{year}.{day}")) as IDay;
+            try
+            {
+                dayInstance = Activator.CreateInstance(Type.GetType($"AdventOfCode.{year}.{day}")) as IDay;
+            }
+            catch (Exception e)
+            {
+                dayInstance = null;
+            }
 
             if (dayInstance == null)
                 validationMessage = "AdventOfCode solving could not be initialized with the given parameters";
+
+            // ASCII Header
+            Console.WriteLine(Header);
+            Console.WriteLine($"Solving {year} {day} with input '{filePath}'\n");
+
+            Console.WriteLine($"\n{Seperator}\n");
 
             // Output error and Return
             if (!string.IsNullOrEmpty(validationMessage))
@@ -85,7 +115,6 @@ namespace AdventOfCode
             }
 
             // Or Solve
-            Console.WriteLine($"Solving {year} {day} with input '{filePath}'");
             dayInstance.Solve(filePath);
 
             Console.ReadLine();
