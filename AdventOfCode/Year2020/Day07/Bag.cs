@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace AdventOfCode
+namespace AdventOfCode.Year2020
 {
     public class Bag
     {

@@ -6,13 +6,18 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace AdventOfCode
+namespace AdventOfCode.Year2020
 {
-    public static class Day7
+    public class Day07 : IDay
     {
-        public static void DoBagging()
+        public void Solve(string input)
         {
-            var descriptions = Helper.LoadLines(@"C:\dev\vs\AdventOfCode\AdventOfCode\Day7\input.txt");
+            DoBagging(input);
+        }
+
+        public void DoBagging(string input)
+        {
+            var descriptions = Helper.LoadLines(input);
             var lookingFor = "shiny gold";
             List<Bag> bags = descriptions.Select(description => new Bag(description)).ToList();
 

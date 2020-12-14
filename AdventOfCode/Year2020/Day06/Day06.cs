@@ -6,13 +6,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace AdventOfCode
+namespace AdventOfCode.Year2020
 {
-    public static class Day6
+    public class Day06 : IDay
     {
-        public static void GetAnswerCount()
+        public void Solve(string input)
         {
-            var answers = Helper.LoadLines(@"C:\dev\vs\AdventOfCode\AdventOfCode\Day6\input.txt", "\n\n");
+            var answers = Helper.LoadLines(input, "\n\n");
 
             GetAnswerCount1(answers);
 
@@ -20,7 +20,7 @@ namespace AdventOfCode
         }
 
 
-        private static void GetAnswerCount1(string[] answers)
+        private void GetAnswerCount1(string[] answers)
         {
             var sum = 0;
 
@@ -36,7 +36,7 @@ namespace AdventOfCode
             Console.WriteLine($"The first answer is {sum}");
         }
 
-        private static void GetAnswerCount2(string[] answers)
+        private void GetAnswerCount2(string[] answers)
         {
             var sum = 0;
 

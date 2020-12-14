@@ -6,15 +6,20 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventOfCode
+namespace AdventOfCode.Year2020
 {
-    public static class Day3
+    public class Day03 : IDay
     {
-        public static void StartEncountering()
+        public void Solve(string input)
         {
-            var map = Load2DFile(@"C:\dev\vs\AdventOfCode\AdventOfCode\Day3\day3.txt");
+            StartEncountering(input);
+        }
 
-            Print2DArray(map);
+        public void StartEncountering(string input)
+        {
+            var map = Load2DFile(input);
+
+            //Print2DArray(map);
             Console.ReadLine();
 
             var encounters = EncounterTrees(map);
@@ -31,7 +36,7 @@ namespace AdventOfCode
             Console.WriteLine("The second answer is " + encounters2);
         }
 
-        private static long EncounterTrees(char[,] map, int rStep = 1, int cStep = 3, int r = 0, int c = 0, int encounters = 0 )
+        private long EncounterTrees(char[,] map, int rStep = 1, int cStep = 3, int r = 0, int c = 0, int encounters = 0 )
         {
             
             var active = map[r, c];
@@ -56,7 +61,7 @@ namespace AdventOfCode
             return encounters;
         }
 
-        public static char[,] Load2DFile(string path)
+        public char[,] Load2DFile(string path)
         {
             var file = File.ReadAllText(path);
             var fileRows = file.Trim().Split('\n');
@@ -89,5 +94,7 @@ namespace AdventOfCode
                 Console.WriteLine();
             }
         }
+
+
     }
 }

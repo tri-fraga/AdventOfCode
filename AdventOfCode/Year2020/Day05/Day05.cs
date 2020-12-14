@@ -6,13 +6,18 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace AdventOfCode
+namespace AdventOfCode.Year2020
 {
-    public static class Day5
+    public class Day05 : IDay
     {
-        public static void Board()
+        public void Solve(string input)
         {
-            var passes = Helper.LoadLines(@"C:\dev\vs\AdventOfCode\AdventOfCode\Day5\input.txt");
+            Board(input);
+        }
+
+        public void Board(string input)
+        {
+            var passes = Helper.LoadLines(input);
 
             List<int> passIds = new List<int>();
 
@@ -43,7 +48,7 @@ namespace AdventOfCode
             }
         }
 
-        private static int ProcessPassPart(string pass, int max = 128, int bas = 0)
+        private int ProcessPassPart(string pass, int max = 128, int bas = 0)
         {
             //Console.WriteLine($"{pass}, max: {max}, base: {bas}");
 

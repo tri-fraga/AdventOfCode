@@ -43,14 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Day3\Day3.cs" />
-    <Compile Include="Day4\Day4.cs" />
-    <Compile Include="Day5\Day5.cs" />
-    <Compile Include="Day6\Day6.cs" />
-    <Compile Include="Day7\Bag.cs" />
-    <Compile Include="Day7\Day7.cs" />
-    <Compile Include="Day8\Day8.cs" />
-    <Compile Include="Day8\Instruction.cs" />
+    <Compile Include="IDay.cs" />
+    <Compile Include="Year2020\Day03\Day03.cs" />
+    <Compile Include="Year2020\Day04\Day04.cs" />
+    <Compile Include="Year2020\Day05\Day05.cs" />
+    <Compile Include="Year2020\Day06\Day06.cs" />
+    <Compile Include="Year2020\Day07\Bag.cs" />
+    <Compile Include="Year2020\Day07\Day07.cs" />
+    <Compile Include="Year2020\Day08\Day08.cs" />
+    <Compile Include="Year2020\Day08\Instruction.cs" />
+    <Compile Include="Year2020\Day09\Day09.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,8 +61,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Day1\" />
-    <Folder Include="Day2\" />
+    <Folder Include="Year2020\Day01\" />
+    <Folder Include="Year2020\Day02\" />
+    <Folder Include="Year2020\Day14\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

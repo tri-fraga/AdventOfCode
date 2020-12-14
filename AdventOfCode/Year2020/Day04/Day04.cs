@@ -6,15 +6,19 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace AdventOfCode
+namespace AdventOfCode.Year2020
 {
-    public static class Day4
+    public class Day04 : IDay
     {
-
-
-        public static void ProcessPassports(bool validate = true)
+        public void Solve(string input)
         {
-            var passports = GetPassports(@"C:\dev\vs\AdventOfCode\AdventOfCode\Day4\input.txt");
+            ProcessPassports(input, false);
+            ProcessPassports(input, true);
+        }
+
+        public void ProcessPassports(string input, bool validate = true)
+        {
+            var passports = GetPassports(input);
             var validCount = 0;
 
 
@@ -69,10 +73,10 @@ namespace AdventOfCode
             Console.WriteLine(validCount + " Passports were valid!");
         }
 
-        private static readonly Func<string, bool> BirthYear = x => int.TryParse(x, out int ix) && ix >= 1920 && ix <= 2002;
-        private static readonly Func<string, bool> IssueYear = x => int.TryParse(x, out int ix) && ix >= 2010 && ix <= 2020;
-        private static readonly Func<string, bool> ExpirationYear = x => int.TryParse(x, out int ix) && ix >= 2020 && ix <= 2030;
-        private static readonly Func<string, bool> Height = x =>
+        private readonly Func<string, bool> BirthYear = x => int.TryParse(x, out int ix) && ix >= 1920 && ix <= 2002;
+        private readonly Func<string, bool> IssueYear = x => int.TryParse(x, out int ix) && ix >= 2010 && ix <= 2020;
+        private readonly Func<string, bool> ExpirationYear = x => int.TryParse(x, out int ix) && ix >= 2020 && ix <= 2030;
+        private readonly Func<string, bool> Height = x =>
         {
             if (x.EndsWith("cm"))
             {
@@ -85,12 +89,12 @@ namespace AdventOfCode
 
             return false;
         };
-        private static readonly Func<string, bool> HairColor = x => Regex.IsMatch(x, "^#[a-f0-9]{6}$");
-        private static readonly Func<string, bool> EyeColor = x => "amb blu brn gry grn hzl oth".Split(' ').Contains(x);
-        private static readonly Func<string, bool> PassportID = x => Regex.IsMatch(x, "^[0-9]{9}$");
-        private static readonly Func<string, bool> CountryId = x => true;
+        private readonly Func<string, bool> HairColor = x => Regex.IsMatch(x, "^#[a-f0-9]{6}$");
+        private readonly Func<string, bool> EyeColor = x => "amb blu brn gry grn hzl oth".Split(' ').Contains(x);
+        private readonly Func<string, bool> PassportID = x => Regex.IsMatch(x, "^[0-9]{9}$");
+        private readonly Func<string, bool> CountryId = x => true;
 
-        private static List<string> GetPassports(string path)
+        private List<string> GetPassports(string path)
         {
             var entries = Regex.Split(File.ReadAllText(path), "\n\n").ToList();
             return entries.Select(e => Regex.Replace(e, "\n", " ").Trim()).ToList();

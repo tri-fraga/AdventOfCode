@@ -6,13 +6,18 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace AdventOfCode
+namespace AdventOfCode.Year2020
 {
-    public static class Day8
+    public class Day08 : IDay
     {
-        public static void Boot()
+        public void Solve(string input)
         {
-            var instructionLines = Helper.LoadLines(@"C:\dev\vs\AdventOfCode\AdventOfCode\Day8\input.txt");
+            Boot(input);
+        }
+
+        public void Boot(string input)
+        {
+            var instructionLines = Helper.LoadLines(input);
 
             var accumulatorInfinity = ProcessTillInfinityOrBeyond(ParseInstructions(instructionLines));
             Console.WriteLine($"The first answer is {accumulatorInfinity.Item1}");
@@ -22,9 +27,9 @@ namespace AdventOfCode
 
         }
 
-        private static int ProcessChanges(string[] instructionLines)
+        private int ProcessChanges(string[] instructionLines)
         {
-            for (int c = 1; c < instructionLines.Length; c++)
+            for (int c = 0; c < instructionLines.Length; c++)
             {
                 var modInstruction = ParseInstructions(instructionLines);
 
@@ -50,7 +55,7 @@ namespace AdventOfCode
             return 0;
         }
 
-        public static Tuple<int, bool> ProcessTillInfinityOrBeyond(Instruction[] instructions)
+        public Tuple<int, bool> ProcessTillInfinityOrBeyond(Instruction[] instructions)
         {
             var accumulator = 0;
             for (int i = 0; ; i++)
@@ -74,7 +79,7 @@ namespace AdventOfCode
             }
         }
 
-        private static Instruction[] ParseInstructions(string[] instructions)
+        private Instruction[] ParseInstructions(string[] instructions)
         {
             var parsedInstructions = new Instruction[instructions.Length];
 
