@@ -18,9 +18,7 @@ namespace AdventOfCode
 
         public static int[] LoadIntLines(string path, string seperator = "\n")
         {
-            return Array.ConvertAll(
-                Regex.Split(File.ReadAllText(path).Trim(), seperator), 
-                int.Parse); 
+            return Array.ConvertAll(LoadLines(path, seperator), int.Parse); 
         }
     }
 }

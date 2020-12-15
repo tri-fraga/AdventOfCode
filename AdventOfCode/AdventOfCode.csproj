@@ -57,6 +57,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Year2020\Day14\Day14.cs" />
+    <Compile Include="Year2020\Day15\Day15.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

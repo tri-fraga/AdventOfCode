@@ -13,9 +13,9 @@ namespace AdventOfCode
     public static class Program
     {
         private const string DefaultYear = "2020";
-        private const string DefaultDay = "14";
+        private const string DefaultDay = "15";
         private const string BaseDir = @"C:\dev\vs\AdventOfCode\AdventOfCode\";
-        private const string DefaultFile = "input.txt";
+        private const string DefaultFile = "";
 
         private const string Header = @"
                   ___       _                     _    _____   __  _____             _       
@@ -42,17 +42,17 @@ namespace AdventOfCode
         static void Main(string[] args)
         {
             IDay dayInstance;
-            var validationMessage = "";
-            var year = "Year";
-            var day = "Day";
-            var dir = "";
-            var fileName = "";
-            var filePath = "";
+            var validationMessage = string.Empty;
+            var year = "Year" + DefaultYear;
+            var day = "Day" + DefaultDay;
+            var dir = BaseDir;
+            var fileName = DefaultFile;
+            var filePath = string.Empty;
 
             Console.ForegroundColor = ConsoleColor.Red;
 
             // Check Arguments
-            if (args.Length == 4)
+            if (args.Length >= 2)
             {
                 if (!int.TryParse(args[0], out var intYear)) 
                     validationMessage = "Year must be a valid integer";
@@ -60,39 +60,39 @@ namespace AdventOfCode
                     validationMessage = "Day must be a valid integer";
                 else
                 {
-                    year += intYear;
-                    day += intDay.ToString().PadLeft(2, '0');
-                    dir = args[2];
-                    fileName = args[3];
+                    year = "Year" + intYear;
+                    day = "Day" + intDay.ToString().PadLeft(2, '0');
                 }
-            } 
-            // Or use default values
-            else if (args.Length == 0)
-            {
-                year += DefaultYear;
-                day += DefaultDay;
-                dir = BaseDir;
-                fileName = DefaultFile;
             }
-            // Or log error 
-            else
+
+            if (args.Length == 4)
+            {
+                dir = args[2];
+                fileName = args[3];
+            }
+
+            if(args.Length > 4)
             {
                 validationMessage = "Pass no args for default params, pass 'year day baseDir filename' to specify params";
             }
 
             // Build File and check
-            dir = dir.EndsWith("\\") ? dir : dir + "\\";
-            filePath = $"{dir}{year}\\{day}\\{fileName}";
+            if (!string.IsNullOrEmpty(dir) && !string.IsNullOrEmpty(filePath))
+            {
+                dir = dir.EndsWith("\\") ? dir : dir + "\\";
+                filePath = $"{dir}{year}\\{day}\\{fileName}";
 
-            if (!File.Exists(filePath))
-                validationMessage = @"Valid base dir and filename must be given (e.g. C:\dev\vs\AdventOfCode\AdventOfCode\ input.txt)";
+                if (!File.Exists(filePath))
+                    validationMessage = @"Valid base dir and filename must be given (e.g. C:\dev\vs\AdventOfCode\AdventOfCode\ input.txt)";
+
+            }
 
             // Instantiate Day
             try
             {
                 dayInstance = Activator.CreateInstance(Type.GetType($"AdventOfCode.{year}.{day}")) as IDay;
             }
-            catch (Exception e)
+            catch
             {
                 dayInstance = null;
             }
